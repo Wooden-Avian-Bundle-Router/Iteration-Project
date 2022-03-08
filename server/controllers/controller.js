@@ -6,7 +6,7 @@ controller.getExpense = (req, res, next) => {
   const text = `SELECT * FROM expense1;`;
   try {
     db.query(text, (err, result) => {
-      r;
+    
       // console.log(result.rows)
       res.locals.expenses = result.rows;
       // console.log(res.locals.expenses);
