@@ -6,8 +6,8 @@ controller.getExpense = (req, res, next) => {
   const text = `SELECT * FROM expense1;`;
   try {
     db.query(text, (err, result) => {
-      r;
-      // console.log(result.rows)
+      // console.log('rows: ', result.rows)
+      // console.log('rows at 0:', result.rows[0])
       res.locals.expenses = result.rows;
       // console.log(res.locals.expenses);
       return next();
@@ -24,8 +24,9 @@ controller.getBalance = (req, res, next) => {
   const text = `SELECT SUM(amount) FROM expense1`;
   try {
     db.query(text, (err, result) => {
-      // console.log(result.rows)
-      // console.log(result.rows[0].sum)
+      // console.log('rows: ', result.rows)
+      // console.log('rows at 0:', result.rows[0])
+      // console.log('sum: ', result.rows[0].sum)
       res.locals.balance = result.rows[0].sum;
       // console.log(res.locals.expenses);
       return next();
@@ -41,7 +42,7 @@ controller.getBalance = (req, res, next) => {
 controller.postExpense = (req, res, next) => {
   const { vendor, amount, category, id } = req.body;
 
-  // console.log(req.body);
+  console.log('req.body:', req.body);
   try {
     const text = `INSERT INTO expense1 VALUES( '${vendor}', ${amount}, '2017-12-20','${category}', '${id}');`;
     res.locals.newExpense = req.body;

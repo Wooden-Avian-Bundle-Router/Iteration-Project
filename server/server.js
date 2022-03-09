@@ -33,7 +33,7 @@ app.delete("/api/:id",controller.deleteExpense, (req, res) => {
   // console.log(id)
   return res.status(200).json(res.locals.oldExpense)
 })
-// 
+//
 // // retrieve last index key in database
 app.get("/api/index", controller.retrieveLastId, (req, res) => {
   return res.status(200).json(res.locals.index)
