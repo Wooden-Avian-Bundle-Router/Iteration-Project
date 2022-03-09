@@ -6,8 +6,8 @@ controller.getExpense = (req, res, next) => {
   const text = `SELECT * FROM expense1;`;
   try {
     db.query(text, (err, result) => {
-      // console.log('rows: ', result.rows)
-      // console.log('rows at 0:', result.rows[0])
+      // r;
+      // console.log(result.rows)
       res.locals.expenses = result.rows;
       // console.log(res.locals.expenses);
       return next();
@@ -17,7 +17,7 @@ controller.getExpense = (req, res, next) => {
       log: "fatal error retrieving expenses from database inside controller.getExpense",
       status: 404,
     });
-  }
+  } 
 };
 
 controller.getBalance = (req, res, next) => {
