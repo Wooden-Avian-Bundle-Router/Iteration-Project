@@ -17,7 +17,7 @@ const Expenses = () => {
       .then((data) => setDatabase(data));
   }, []);
 
-  // //upon rending, sets currentBalance state to current database net price
+  // //upon rending, sets currentBalance state to current database net price                                                                                                                               
   useEffect(() => {
     fetch("/api/getBalance")
       .then((response) => response.json())
@@ -38,11 +38,11 @@ const Expenses = () => {
     const vendor = document.getElementById("Vendor").value;
     const amount = document.getElementById("Amount").value;
     const category = document.getElementById("Category").value;
-    const date = document.getElementById("Date").value;
+    const date = document.getElementById("Date").value;                          
     console.log(date);
     const postOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },                                                                                                                 
       body: JSON.stringify({
         id: index,
         amount: amount,
@@ -54,6 +54,7 @@ const Expenses = () => {
     fetch("/api/expenses", postOptions)
       .then((response) => response.json())
       .then((data) => {
+        console.log('data from adding an expense ', data)
         addBalance(data.amount);
         return addItem(data);
       })
@@ -83,7 +84,7 @@ const Expenses = () => {
           .then((data) => setIndex(data));
       });
   }
-  // adds new extry to current state
+  // adds new entry to current state
   function addItem(data) {
     setDatabase(database.concat(data));
   }
@@ -97,6 +98,8 @@ const Expenses = () => {
     setIndex(currentIndex + 1);
   }
 
+  //TODO (3/9/22): modularize the code below, breaking into separate but reusable React components.
+    //decide on number of components and their features
   return (
     <>
       <header>
@@ -147,7 +150,7 @@ const Expenses = () => {
             </div>
             <div className="cards">
               {database.map((item, i) => (
-                <div className="innerCard">
+                <div className="innerCard" id={item.id} key={`ITEM${i}`}>
                   <ul>
                     <li>
                       <span>Price: </span>${item.amount}
@@ -162,7 +165,7 @@ const Expenses = () => {
                       <span>Date: </span> {item.date}{" "}
                     </li>
                     <button
-                      id={item.id}
+                      
                       className="remove"
                       onClick={() => {
                         deleteClick(item.id);
