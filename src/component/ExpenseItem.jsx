@@ -7,14 +7,19 @@ import DeleteBtn from "./DeleteBtn"
 
 // import "../styles/app.css";
 
-const ExpenseItem = () => {
-    return (
+const ExpenseItem = (props) => {
+    // console.log('this is the value of props in ExpenseItem: ', props);
+    // console.log('this is the value of props.amount in ExpenseItem: ', props.amount);
+    const { vendor, amount, date, category, id } = props.expenseItem;
+    // console.log('props in ExpenseItem: ',props);
+    // console.log('amount in ExpenseItem: ',amount);
+    return (    
         <>
-            <Amount />
-            <Vendor />
-            <Category />
-            <Date />
-            <DeleteBtn />
+            <Amount amount={amount}/>
+            <Vendor vendor={vendor}/>
+            <Category category={category}/>
+            <Date date={date}/>
+            <DeleteBtn id={id} />
         </>
     );
 }

@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
-import { LatestExpenseEntryContext } from "../Context/context";
+import React from "react";
 
+const Amount = (props) => {
 
-
-const Amount = () => {
-    const [latestExpenseEntry] = useContext(LatestExpenseEntryContext);
-    const { amount } = latestExpenseEntry;
+    // console.log('the value of BalanceContext in InputContainer is: ', BalanceContext);
+    // console.log('this is the value of latestExpenseEntry in Amount.jsx: ', latestExpense)
+    // const  amount  = props.amount;
+    const { amount } = props;
+    // console.log('props: ',props);
+    // console.log('amount: ',amount);
     
     return (
         <li>

@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { DeleteClickContext } from "../Context/context";
 
-const DeleteBtn = () => {
-    const [latestExpenseEntry] = useContext(LatestExpenseEntryContext);
-    const [deleteClick] = useContext(DeleteClickContext);
+const DeleteBtn = (props) => {
+      
+    const deleteClick = useContext(DeleteClickContext);
 
-    const { id } = latestExpenseEntry;
+    // console.log('useContext(DeleteClickContext): ', useContext(DeleteClickContext));
+
+    const { id } = props;
 
     return (
         <div>

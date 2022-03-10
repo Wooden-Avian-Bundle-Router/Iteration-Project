@@ -1,11 +1,7 @@
-import React, { useContext } from "react";
-import { LatestExpenseEntryContext } from "../Context/context";
+import React from "react";
 
-
-
-const Vendor = () => {
-    const [latestExpenseEntry] = useContext(LatestExpenseEntryContext);
-    const { vendor } = latestExpenseEntry;
+const Vendor = (props) => {
+    const { vendor } = props;
 
     return (
          <li>

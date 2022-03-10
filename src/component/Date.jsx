@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
-import { LatestExpenseEntryContext } from "../Context/context";
+import React from "react";
 
-const Date = () => {
-    const [latestExpenseEntry] = useContext(LatestExpenseEntryContext);
-    const { date } = latestExpenseEntry;
+const Date = (props) => {
+    const { date } = props;
 
     return (
          <li>

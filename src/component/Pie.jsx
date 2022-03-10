@@ -78,7 +78,7 @@ const options = {
 
 // export function App() {
 // The website had this rendering from App. I really need help with this part.  Where do I import this or how do we send it down? 
-export function PieChart() {
+export default function PieChart() {
   // Do we need to add {...props} to the Pie below? 
   // return <Pie options={...} data={data} width={200} height={200} />
   // Or is it width="200px" height="200px"?
