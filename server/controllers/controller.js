@@ -3,12 +3,13 @@ const db = require("../model/model");
 const controller = {};
 
 controller.getExpense = async (req, res, next) => {
-  const text = `SELECT * FROM expense1;`;
+  const text = `SELECT * FROM expense3;`;
   // const text = `SELECT * FROM expenses;`;
   try {
     // const response = await db.query(text, (err, result) => {
     const result = await db.query(text);
-    console.log(result);
+    console.log('[11] result: ', result);
+    // console.log(result);
       // console.log(result.rows)
     res.locals.expenses = result.rows;
     console.log(res.locals.expenses);
@@ -25,7 +26,7 @@ controller.getExpense = async (req, res, next) => {
 };
 
 controller.getBalance = (req, res, next) => {
-  const text = `SELECT SUM(amount) FROM expense1`;
+  const text = `SELECT SUM(amount) FROM expense3`;
   // const text = `SELECT SUM(amount) FROM expenses`;
   // try {
       db.query(text, (err, result) => {
@@ -38,9 +39,9 @@ controller.getBalance = (req, res, next) => {
           return next(err);
         } else {
           
-      // console.log('rows: ', result.rows)
-      // console.log('rows at 0:', result.rows[0])
-      // console.log('sum: ', result.rows[0].sum)
+      console.log('rows: ', result.rows)
+      console.log('rows at 0:', result.rows[0])
+      console.log('sum: ', result.rows[0].sum)
       res.locals.balance = result.rows[0].sum;
       // console.log(res.locals.expenses);
       return next();
@@ -61,15 +62,17 @@ controller.postExpense = async (req, res, next) => {
 
   // console.log('req.body:', req.body);
   // try {
-    const text = `INSERT INTO expense1 VALUES( '${vendor}', ${amount}, '2017-12-20','${category}', '${id}');`;
+    const text = `INSERT INTO expense3 VALUES( '${vendor}', ${amount}, '2017-12-20','${category}');`;
     // res.locals.newExpense = req.body;
     // db.query(text, (err, result) => {
     //   // console.log(result);
     //   return next();
     // });
     res.locals.newExpense = req.body;
+    console.log('req.body:', req.body);
+    console.log('req.body.id:', req.body.id);
     const result = await db.query(text);
-    console.log(result);
+    // console.log('[72] result: ', result);
       // console.log(result);
     return next();
     
@@ -92,7 +95,7 @@ controller.deleteExpense = async (req, res, next) => {
   // console.log("req.params for delete", id);
   try {
     // const { id } = req.params;
-    // const text = `DELETE FROM expense1 WHERE id = ${id}`;
+    // const text = `DELETE FROM expense3 WHERE id = ${id}`;
     // // const text = `DELETE FROM expenses WHERE id = ${id}`;
     // console.log(`id: ${id}`);
     // res.locals.oldExpense = req.params;
@@ -100,7 +103,7 @@ controller.deleteExpense = async (req, res, next) => {
     //   // console.log(result);
     //   return next();
     const { id } = req.params;
-    const text = `DELETE FROM expense1 WHERE id = ${id}`;
+    const text = `DELETE FROM expense3 WHERE id = ${id}`;
     // const text = `DELETE FROM expenses WHERE id = ${id}`;
     console.log(`id: ${id}`);
     res.locals.oldExpense = req.params;
@@ -121,7 +124,7 @@ controller.retrieveLastId = (req, res, next) => {
   const { vendor, amount, category } = req.body;
   console.log('retrieveLastId ',req.body);
   // try {
-    const text = `SELECT id FROM expense1 ORDER BY id DESC LIMIT 1`;
+    // const text = `SELECT id FROM expense3 ORDER BY id DESC LIMIT 1`;
     // const text = `SELECT id FROM expenses ORDER BY id DESC LIMIT 1`;
     // console.log('res.locals.index', res.locals.index)
   db.query(text, (err, result) => {
@@ -158,4 +161,4 @@ module.exports = controller;
 //     Category varchar(255),
 //     id int
 // );
-// INSERT INTO expense1 VALUES ('Walmart', 12, '2022-1-10', 'Shampoo', 0);
+// INSERT INTO expense3 VALUES ('Walmart', 12, '2022-1-10', 'Shampoo', 0);
